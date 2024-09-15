@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: job-board-staging-cert
+  namespace: default
+spec:
+  secretName: job-board-staging-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: staging.placements.100xdevs.com
+  dnsNames:
+  - staging.placements.100xdevs.com
