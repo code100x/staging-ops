@@ -18,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: algo-next
+                name: job-board-staging
                 port:
                   number: 80
