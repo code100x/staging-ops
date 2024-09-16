@@ -10,6 +10,9 @@ spec:
     - hosts:
       - staging.placements.100xdevs.com
       secretName: job-board-staging-tls
+    - hosts:
+      - staging.projects.100xdevs.com
+      secretName: dailycode-staging-tls
   rules:
     - host: staging.placements.100xdevs.com
       http:
@@ -19,5 +22,15 @@ spec:
             backend:
               service:
                 name: job-board-staging
+                port:
+                  number: 80
+    - host: staging.projects.100xdevs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dailycode-staging
                 port:
                   number: 80
