@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: dailycode-cert
+  namespace: default
+spec:
+  secretName: dailycode-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: placements.100xdevs.com
+  dnsNames:
+  - placements.100xdevs.com

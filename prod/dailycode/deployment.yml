@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dailycode
+  labels:
+    app: dailycode
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dailycode
+  template:
+    metadata:
+      labels:
+        app: dailycode
+    spec:
+      containers:
+        - name: dailycode
+          image: 100xdevs/dailycode:e4817e9e47595dd631b959bd5cbc2ad15b162ed5
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: secret
+              mountPath: /usr/src/app/.env
+              subPath: .env
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: secret
+          secret:
+            secretName: dailycode-secret
+            items:
+              - key: .env
+                path: .env
