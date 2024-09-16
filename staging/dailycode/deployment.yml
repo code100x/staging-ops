@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dailycode-staging
+  labels:
+    app: dailycode-staging
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dailycode-staging
+  template:
+    metadata:
+      labels:
+        app: dailycode-staging
+    spec:
+      containers:
+        - name: dailycode-staging
+          image: 100xdevs/dailycode-staging:e4817e9e47595dd631b959bd5cbc2ad15b162ed5
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: secret
+              mountPath: /usr/src/app/.env
+              subPath: .env
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: secret
+          secret:
+            secretName: dailycode-staging-secret
+            items:
+              - key: .env
+                path: .env
