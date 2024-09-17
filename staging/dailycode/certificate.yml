@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: staging.dailycode.100xdevs.com
+  commonName: staging.projects.100xdevs.com
   dnsNames:
-  - staging.dailycode.100xdevs.com
+  - staging.projects.100xdevs.com

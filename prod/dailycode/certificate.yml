@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: placements.100xdevs.com
+  commonName: projects.100xdevs.com
   dnsNames:
-  - placements.100xdevs.com
+  - projects.100xdevs.com
