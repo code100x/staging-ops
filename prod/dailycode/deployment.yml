@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dailycode
-          image: 100xdevs/dailycode:d9ca1af2a18eb9195ad6f5feae5c4a0e4d0f7969
+          image: 100xdevs/dailycode:3e0dbe46a1c88aa6c383aeb46646d21c0eafc617
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
