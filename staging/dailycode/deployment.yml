@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dailycode-staging
-          image: 100xdevs/dailycode-staging:f222a625e028a48810e7b83b621e923ce904b901
+          image: 100xdevs/dailycode-staging:603c372a0724df961c74cc469099db37577417db
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
