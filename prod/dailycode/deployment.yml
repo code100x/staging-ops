@@ -5,7 +5,7 @@ metadata:
   labels:
     app: dailycode
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: dailycode
@@ -22,8 +22,17 @@ spec:
             - containerPort: 3000
           volumeMounts:
             - name: secret
-              mountPath: /usr/src/app/.env
+              mountPath: /usr/src/app/apps/web/.env
               subPath: .env
+            - name: secret
+              mountPath: /usr/src/app/packages/db/.env
+              subPath: .env
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: dailycode-secret
+                  key: DATABASE_URL
       imagePullSecrets:
         - name: regcred
       volumes:
