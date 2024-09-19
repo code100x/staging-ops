@@ -5,7 +5,7 @@ metadata:
   labels:
     app: cms
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: cms
@@ -16,23 +16,14 @@ spec:
     spec:
       containers:
         - name: cms
-          image: 100xdevs/cms:603c372a0724df961c74cc469099db37577417db
+          image: 100xdevs/cms:35
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
           volumeMounts:
             - name: secret
-              mountPath: /usr/src/app/apps/web/.env
+              mountPath: /usr/src/app/.env
               subPath: .env
-            - name: secret
-              mountPath: /usr/src/app/packages/db/.env
-              subPath: .env
-          env:
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: cms-secret
-                  key: DATABASE_URL
       imagePullSecrets:
         - name: regcred
       volumes:
