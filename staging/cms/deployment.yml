@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms-staging
+  labels:
+    app: cms-staging
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cms-staging
+  template:
+    metadata:
+      labels:
+        app: cms-staging
+    spec:
+      containers:
+        - name: cms-staging
+          image: 100xdevs/cms-staging:9f9e1d99237601d1293a0a106c9aca75aaf05978
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: secret
+              mountPath: /usr/src/app/.env
+              subPath: .env
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: secret
+          secret:
+            secretName: cms-staging-secret
+            items:
+              - key: .env
+                path: .env

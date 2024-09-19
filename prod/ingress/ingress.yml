@@ -8,42 +8,42 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-      - staging.placements.100xdevs.com
-      secretName: job-board-staging-tls
+      - placements.100xdevs.com
+      secretName: job-board-tls
     - hosts:
-      - staging.projects.100xdevs.com
-      secretName: dailycode-staging-tls
+      - projects.100xdevs.com
+      secretName: dailycode-tls
     - hosts:
-      - staging.app.100xdevs.com
-      secretName: cms-staging-tls
+      - app.100xdevs.com
+      secretName: cms-tls
   rules:
-    - host: staging.placements.100xdevs.com
+    - host: placements.100xdevs.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: job-board-staging
+                name: job-board
                 port:
                   number: 80
-    - host: staging.projects.100xdevs.com
+    - host: projects.100xdevs.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: dailycode-staging
+                name: dailycode
                 port:
                   number: 80
-    - host: staging.app.100xdevs.com
+    - host: app.100xdevs.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: cms-staging
+                name: cms
                 port:
                   number: 80
