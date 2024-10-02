@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: job-board
-          image: 100xdevs/job-board:2d52ab922e45d611748a22550d636f717fdb7d96
+          image: 100xdevs/job-board:69f6d49ca01603b74a60a2e38f040c982f3c954a
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
