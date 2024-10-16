@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: job-board-staging
-          image: 100xdevs/job-board-staging:17651c40aeef23a03c0a5efbd32cce9b7c348d64
+          image: 100xdevs/job-board-staging:0061739963d82e292077a1288e63ee61b9a6b4de
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
