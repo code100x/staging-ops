@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: cms-staging
-          image: 100xdevs/cms-staging:d2cb0f32cdc63c978f919d8467c703b74f34959f
+          image: 100xdevs/cms-staging:fc637b5384a9b421d93bc7af4fc991772f8b3d42
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
