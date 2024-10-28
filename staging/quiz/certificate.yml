@@ -1,0 +1,28 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: quiz-cert
+  namespace: default
+spec:
+  secretName: quiz-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: quiz.100xdevs.com
+  dnsNames:
+  - quiz.100xdevs.com
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: quiz-backend-cert
+  namespace: default
+spec:
+  secretName: quiz-backend-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: quiz-backend.100xdevs.com
+  dnsNames:
+  - quiz-backend.100xdevs.com
+-
