@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: worker
-        image: 100xdevs/project-platform-worker:latest
+        image: 100xdevs/project-platform-worker:c5280d1a889e0c7947585929fd63c205f6db85e1
         env:
         - name: REDIS_HOST
           value: "redis.default.svc.cluster.local:6379"
