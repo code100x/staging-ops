@@ -53,7 +53,7 @@ spec:
                 name: cms-staging
                 port:
                   number: 80
-    - host: quiz.app.100xdevs.com
+    - host: quiz.100xdevs.com
       http:
         paths:
           - path: /
@@ -63,7 +63,7 @@ spec:
                 name: quiz-backend-server
                 port:
                   number: 80
-    - host: quiz-backend.app.100xdevs.com
+    - host: quiz-backend.100xdevs.com
       http:
         paths:
           - path: /
