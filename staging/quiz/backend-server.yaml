@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend-server
-        image: 100xdevs/project-platform-backend-server:c5280d1a889e0c7947585929fd63c205f6db85e1
+        image: 100xdevs/project-platform-backend-server:647aa56c4b04b15b41c766d3a84d905769cafe10
         ports:
         - containerPort: 3001
         env:
