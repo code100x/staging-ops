@@ -60,7 +60,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: quiz-backend-server
+                name: quiz-frontend
                 port:
                   number: 80
     - host: quiz-backend.100xdevs.com
@@ -70,6 +70,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: quiz-frontend
+                name: quiz-backend-server
                 port:
                   number: 80
