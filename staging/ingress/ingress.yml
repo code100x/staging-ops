@@ -21,7 +21,7 @@ spec:
       secretName: quiz-tls
     - hosts:
       - quiz-backend.100xdevs.com
-      secretName: quiz-backendtls
+      secretName: quiz-backend-tls
   rules:
     - host: staging.placements.100xdevs.com
       http:
