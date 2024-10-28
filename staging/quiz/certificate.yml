@@ -25,4 +25,3 @@ spec:
   commonName: quiz-backend.100xdevs.com
   dnsNames:
   - quiz-backend.100xdevs.com
--
