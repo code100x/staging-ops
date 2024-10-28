@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: worker
+  name: quiz-worker
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: worker
+      app: quiz-worker
   template:
     metadata:
       labels:
-        app: worker
+        app: quiz-worker
     spec:
       containers:
-      - name: worker
+      - name: quiz-worker
         image: 100xdevs/project-platform-worker:latest
         env:
         - name: REDIS_HOST

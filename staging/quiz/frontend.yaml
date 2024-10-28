@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: quiz-frontend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: frontend
+      app: quiz-frontend
   template:
     metadata:
       labels:
-        app: frontend
+        app: quiz-frontend
     spec:
       containers:
-      - name: frontend
+      - name: quiz-frontend
         image: 100xdevs/project-platform-frontend:latest
         ports:
         - containerPort: 3000
@@ -21,11 +21,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: quiz-frontend
 spec:
   ports:
   - port: 80
     targetPort: 3000
   selector:
-    app: frontend
+    app: quiz-frontend
 
