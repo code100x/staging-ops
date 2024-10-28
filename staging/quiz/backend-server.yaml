@@ -26,6 +26,22 @@ spec:
             secretKeyRef:
               name: backend-secrets
               key: DATABASE_URL
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: JWT_SECRET
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: PASSWORD
+        - name: USER_ID
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: USER_ID
+        
 ---
 apiVersion: v1
 kind: Service
