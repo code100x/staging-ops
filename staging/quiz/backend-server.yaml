@@ -1,20 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-server
+  name: quiz-backend-server
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: backend-server
+      app: quiz-backend-server
   template:
     metadata:
       labels:
-        app: backend-server
+        app: quiz-backend-server
     spec:
       containers:
-      - name: backend-server
-        image: 100xdevs/project-platform-backend-server:c5280d1a889e0c7947585929fd63c205f6db85e1
+
+      - name: quiz-backend-server
+        image: 100xdevs/project-platform-backend-server:647aa56c4b04b15b41c766d3a84d905769cafe10
         ports:
         - containerPort: 3001
         env:
@@ -29,9 +30,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-server
+  name: quiz-backend-server
 spec:
   ports:
   - port: 3001
   selector:
-    app: backend-server
+    app: quiz-backend-server
