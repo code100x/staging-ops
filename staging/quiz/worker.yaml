@@ -17,7 +17,7 @@ spec:
         image: 100xdevs/project-platform-worker:647aa56c4b04b15b41c766d3a84d905769cafe10
         env:
         - name: REDIS_HOST
-          value: "redis.default.svc.cluster.local:6379"
+          value: "redis://redis.default.svc.cluster.local:6379"
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
