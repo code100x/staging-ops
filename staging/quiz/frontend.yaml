@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: quiz-frontend
-        image: 100xdevs/project-platform-frontend:8ed04a8ef17785c528bf6d119d2419e40d93cc61
+        image: 100xdevs/project-platform-frontend:58a0875ef997781cf97be49885ab22fdc777a57f
         ports:
         - containerPort: 3000
 ---
