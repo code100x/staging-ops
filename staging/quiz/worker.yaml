@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: quiz-worker
-        image: 100xdevs/project-platform-worker:bc91534f56e1b29a54e49cd98c07a04b8466884e
+        image: 100xdevs/project-platform-worker:fbb1eb6ad0d4d36efebda2c6345bc94a1ececf95
         env:
         - name: REDIS_HOST
           value: "redis://redis.default.svc.cluster.local:6379"
