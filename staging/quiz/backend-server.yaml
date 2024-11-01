@@ -26,21 +26,31 @@ spec:
             secretKeyRef:
               name: backend-secrets
               key: DATABASE_URL
-        - name: JWT_SECRET
+        - name: ADMIN_USERNAME
           valueFrom:
             secretKeyRef:
               name: backend-secrets
-              key: JWT_SECRET
-        - name: PASSWORD
+              key: ADMIN_USERNAME
+        - name: BACKEND_URL
           valueFrom:
             secretKeyRef:
               name: backend-secrets
-              key: PASSWORD
-        - name: USER_ID
+              key: BACKEND_URL
+        - name: FRONTEND_URL
           valueFrom:
             secretKeyRef:
               name: backend-secrets
-              key: USER_ID
+              key: FRONTEND_URL
+        - name: GOOGLE_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: GOOGLE_CLIENT_ID
+        - name: GOOGLE_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: GOOGLE_CLIENT_SECRET
         
 ---
 apiVersion: v1
