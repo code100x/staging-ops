@@ -26,6 +26,11 @@ spec:
             secretKeyRef:
               name: backend-secrets
               key: DATABASE_URL
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: JWT_SECRET
         - name: ADMIN_USERNAME
           valueFrom:
             secretKeyRef:
