@@ -21,7 +21,7 @@ spec:
       secretName: quiz-tls
     - hosts:
       - quiz-backend.100xdevs.com
-      secretName: quiz-backendtls
+      secretName: quiz-backend-tls
   rules:
     - host: staging.placements.100xdevs.com
       http:
@@ -53,17 +53,7 @@ spec:
                 name: cms-staging
                 port:
                   number: 80
-    - host: quiz.app.100xdevs.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: quiz-backend-server
-                port:
-                  number: 80
-    - host: quiz-backend.app.100xdevs.com
+    - host: quiz.100xdevs.com
       http:
         paths:
           - path: /
@@ -71,5 +61,15 @@ spec:
             backend:
               service:
                 name: quiz-frontend
+                port:
+                  number: 80
+    - host: quiz-backend.100xdevs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: quiz-backend-server
                 port:
                   number: 80
