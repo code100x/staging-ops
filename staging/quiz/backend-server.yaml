@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: quiz-backend-server
-          image: 100xdevs/project-platform-backend-server:725c64eab87fc1b2ab6b8719002074c97815516b
+          image: 100xdevs/project-platform-backend-server:44d7fd8b9f7d44b8aa61fdb46649718f6a3ea37d
           ports:
             - containerPort: 3001
           env:
