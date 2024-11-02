@@ -13,15 +13,15 @@ spec:
         app: quiz-worker
     spec:
       containers:
-      - name: quiz-worker
-        image: 100xdevs/project-platform-worker:6d0cba400f0cb8b8a9130d0f2f2390b2bd41df47
-        env:
-        - name: REDIS_HOST
-          value: "redis://redis.default.svc.cluster.local:6379"
-        volumeMounts:
-          - name: secret
-            mountPath: /app/.env
-            subPath: .env
+        - name: quiz-worker
+          image: 100xdevs/project-platform-worker:6d0cba400f0cb8b8a9130d0f2f2390b2bd41df47
+          env:
+            - name: REDIS_HOST
+              value: "redis://redis.default.svc.cluster.local:6379"
+          volumeMounts:
+            - name: secret
+              mountPath: /app/.env
+              subPath: .env
       volumes:
         - name: secret
           secret:
