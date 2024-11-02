@@ -39,6 +39,7 @@ metadata:
   name: quiz-backend-server
 spec:
   ports:
-  - port: 3001
+  - port: 80
+    targetPort: 3001
   selector:
     app: quiz-backend-server
