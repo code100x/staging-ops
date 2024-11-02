@@ -18,8 +18,14 @@ spec:
         env:
         - name: REDIS_HOST
           value: "redis://redis.default.svc.cluster.local:6379"
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: backend-secrets
-              key: DATABASE_URL
+        volumeMounts:
+          - name: secret
+            mountPath: /app/.env
+            subPath: .env
+      volumes:
+        - name: secret
+          secret:
+            secretName: backend-secrets
+            items:
+              - key: .env
+                path: .env
