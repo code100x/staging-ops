@@ -1,0 +1,11 @@
+services:
+  backup:
+    build:
+      context: .
+      target: final
+    env_file: .env
+    environment:
+      - BACKUP_FOLDER=cms
+    # Preserve backup on machine too
+    volumes:
+      - ./backups/:/app/backups
