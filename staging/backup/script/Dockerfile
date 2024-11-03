@@ -1,3 +1,4 @@
+# The postgres client version should be same asthe server version 
 FROM postgres:15
 
 RUN apt-get update
