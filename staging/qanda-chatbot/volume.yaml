@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: qanda-qdrant-pv
+spec:
+  capacity:
+    storage: 10Gi  
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/data/qdrant"  
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qanda-qdrant-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
