@@ -22,6 +22,9 @@ spec:
     - hosts:
       - quiz-backend.100xdevs.com
       secretName: quiz-backend-tls
+    - hosts:
+        - ai.api.100xdevs.com
+      secretName: ai-api-tls
   rules:
     - host: staging.placements.100xdevs.com
       http:
@@ -71,5 +74,15 @@ spec:
             backend:
               service:
                 name: quiz-backend-server
+                port:
+                  number: 80
+    - host: ai.api.100xdevs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: qanda-chatbot-server
                 port:
                   number: 80
