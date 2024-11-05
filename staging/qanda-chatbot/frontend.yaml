@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: anda-frontend
+  name: qanda-frontend
 spec:
   ports:
   - port: 80
