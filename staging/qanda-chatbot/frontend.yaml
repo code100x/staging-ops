@@ -14,14 +14,15 @@ spec:
     spec:
       containers:
       - name: qanda-frontend
-        image: 100xdevs/qanda-frontend:4845071e649fd5431a70aef841cf0e1778cb2339
+        image: 100xdevs/qanda-frontend:9a93af7e7c40de00b9a4266b09440d6728b3292c
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: anda-frontend
+  name: qanda-frontend
 spec:
   ports:
   - port: 80
