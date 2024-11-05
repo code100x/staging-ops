@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qanda-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: qanda-frontend
+  template:
+    metadata:
+      labels:
+        app: qanda-frontend
+    spec:
+      containers:
+      - name: qanda-frontend
+        image: 100xdevs/qanda-frontend:latest
+        ports:
+        - containerPort: 5173
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: anda-frontend
+spec:
+  ports:
+  - port: 80
+    targetPort: 5173
+  selector:
+    app: qanda-frontend
