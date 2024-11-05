@@ -23,6 +23,12 @@ spec:
         - quiz-backend.100xdevs.com
       secretName: quiz-backend-tls
     - hosts:
+        - ai.api.100xdevs.com
+      secretName: ai-api-tls
+    - hosts:
+        - ai.100xdevs.com
+      secretName: ai-tls
+    - hosts:
         - webinar.gg
       secretName: webinar-tls
     - hosts:
@@ -80,6 +86,26 @@ spec:
             backend:
               service:
                 name: quiz-backend-server
+                port:
+                  number: 80
+    - host: ai.api.100xdevs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: qanda-chatbot-server
+                port:
+                  number: 80
+    - host: ai.100xdevs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: qanda-frontend
                 port:
                   number: 80
     - host: webinar.gg

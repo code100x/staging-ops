@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quiz-frontend
+  name: qanda-frontend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: quiz-frontend
+      app: qanda-frontend
   template:
     metadata:
       labels:
-        app: quiz-frontend
+        app: qanda-frontend
     spec:
       containers:
-      - name: quiz-frontend
-        image: 100xdevs/project-platform-frontend:9ef123789c68d22ded338da2fdf2c6c88006bc1b
+      - name: qanda-frontend
+        image: 100xdevs/qanda-frontend:4845071e649fd5431a70aef841cf0e1778cb2339
         ports:
         - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: quiz-frontend
+  name: anda-frontend
 spec:
   ports:
   - port: 80
     targetPort: 3000
   selector:
-    app: quiz-frontend
+    app: qanda-frontend
