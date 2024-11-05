@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: qanda-frontend
-        image: 100xdevs/qanda-frontend:latest
+        image: 100xdevs/qanda-frontend:abd3a879dc8b858ea7558903dc9a8ed150aca5a6
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
