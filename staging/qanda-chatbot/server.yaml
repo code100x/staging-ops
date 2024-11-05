@@ -16,7 +16,7 @@ spec:
       - name: qanda-server
         image: 100xdevs/qanda-chatbot-server:926c9fa3f5916ecdaebd6f875e517846f8b311fb
         ports:
-        - containerPort: 3000
+        - containerPort: 3001
         env:
           - name: QDRANT_URL
             value: "http://qdrant.default.svc.cluster.local:6333"
@@ -42,4 +42,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 3000
+      targetPort: 3001
