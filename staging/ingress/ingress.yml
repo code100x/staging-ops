@@ -8,19 +8,19 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-      - staging.placements.100xdevs.com
+        - staging.placements.100xdevs.com
       secretName: job-board-staging-tls
     - hosts:
-      - staging.projects.100xdevs.com
+        - staging.projects.100xdevs.com
       secretName: dailycode-staging-tls
     - hosts:
-      - staging.app.100xdevs.com
+        - staging.app.100xdevs.com
       secretName: cms-staging-tls
     - hosts:
-      - quiz.100xdevs.com
+        - quiz.100xdevs.com
       secretName: quiz-tls
     - hosts:
-      - quiz-backend.100xdevs.com
+        - quiz-backend.100xdevs.com
       secretName: quiz-backend-tls
     - hosts:
         - ai.api.100xdevs.com
@@ -28,6 +28,15 @@ spec:
     - hosts:
         - ai.100xdevs.com
       secretName: ai-tls
+    - hosts:
+        - webinar.gg
+      secretName: webinar-tls
+    - hosts:
+        - webinar-api.webinar.gg
+      secretName: webinar-server-tls
+    - hosts:
+        - webinar-ws-api.webinar.gg
+      secretName: webinar-ws-tls
   rules:
     - host: staging.placements.100xdevs.com
       http:
@@ -88,7 +97,7 @@ spec:
               service:
                 name: qanda-chatbot-server
                 port:
-                  number: 80    
+                  number: 80
     - host: ai.100xdevs.com
       http:
         paths:
@@ -97,5 +106,35 @@ spec:
             backend:
               service:
                 name: qanda-frontend
+                port:
+                  number: 80
+    - host: webinar.gg
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webinar-frontend
+                port:
+                  number: 80
+    - host: webinar-api.webinar.gg
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webinar-server
+                port:
+                  number: 80
+    - host: webinar-ws-api.webinar.gg
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webinar-ws
                 port:
                   number: 80

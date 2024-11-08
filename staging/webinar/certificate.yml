@@ -1,0 +1,41 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: webinar-cert
+  namespace: default
+spec:
+  secretName: webinar-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: webinar.gg
+  dnsNames:
+    - webinar.gg
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: webinar-server-cert
+  namespace: default
+spec:
+  secretName: webinar-server-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: webinar-api.webinar.gg
+  dnsNames:
+    - webinar-api.webinar.gg
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: webinar-ws-cert
+  namespace: default
+spec:
+  secretName: webinar-ws-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: webinar-ws-api.webinar.gg
+  dnsNames:
+    - webinar-ws-api.webinar.gg
