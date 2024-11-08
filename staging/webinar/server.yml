@@ -18,9 +18,16 @@ spec:
           ports:
             - containerPort: 3001
           volumeMounts:
-            - name: webinar-api-secret
+            - name: secret
               mountPath: /usr/src/app/apps/api/.env
               subPath: .env
+      volumes:
+        - name: secret
+          secret:
+            secretName: webinar-api-secrets
+            items:
+              - key: .env
+                path: .env
 ---
 apiVersion: v1
 kind: Service
