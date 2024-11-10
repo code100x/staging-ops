@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: algo-next
+  labels:
+    app: algo-next
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: algo-next
+  template:
+    metadata:
+      labels:
+        app: algo-next
+    spec:
+      containers:
+        - name: algo-next
+          image: 100xdevs/algo-next:35
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: secret
+              mountPath: /usr/src/app/apps/web/.env
+              subPath: .env
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: secret
+          secret:
+            secretName: algo-next-secret
+            items:
+              - key: .env
+                path: .env
