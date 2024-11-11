@@ -29,7 +29,7 @@ spec:
       volumes:
         - name: secret
           secret:
-            secretName: algo-next-secret
+            secretName: algo-arena-secret
             items:
               - key: .env
                 path: .env
