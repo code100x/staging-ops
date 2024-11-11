@@ -22,7 +22,7 @@ spec:
             - containerPort: 3000
           volumeMounts:
             - name: secret
-              mountPath: /usr/src/app/.env
+              mountPath: /usr/src/app/apps/sweeper/.env
               subPath: .env
       imagePullSecrets:
         - name: regcred
