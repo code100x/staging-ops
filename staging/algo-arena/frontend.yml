@@ -43,4 +43,4 @@ spec:
   - port: 80
     targetPort: 3000
   selector:
-    app: algo-arena-frontend
+    app: algo-next
