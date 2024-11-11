@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: algo-sweeper
+  labels:
+    app: algo-sweeper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: algo-sweeper
+  template:
+    metadata:
+      labels:
+        app: algo-sweeper
+    spec:
+      containers:
+        - name: algo-sweeper
+          image: 100xdevs/algo-sweeper:35
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: secret
+              mountPath: /usr/src/app/.env
+              subPath: .env
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: secret
+          secret:
+            secretName: algo-arena-secret
+            items:
+              - key: .env
+                path: .env
