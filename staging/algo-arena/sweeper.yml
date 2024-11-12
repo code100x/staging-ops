@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: algo-sweeper
-          image: 100xdevs/algo-sweeper:4032da3b6901b44c47e5f27c93f73a0c79746ee2
+          image: 100xdevs/algo-sweeper:6160301a0fb679a583af2725f63d25d4c65b9a35
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
