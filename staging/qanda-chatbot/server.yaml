@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: qanda-server
-        image: 100xdevs/qanda-chatbot-server:2a25b15561d4661bb83421c9fc32c6ae6100bb10
+        image: 100xdevs/qanda-chatbot-server:e788daf7a14d35ecc75774fd5cd0c324a93cb1c4
         imagePullPolicy: Always
         ports:
         - containerPort: 3001
