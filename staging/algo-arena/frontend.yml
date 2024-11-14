@@ -1,35 +1,46 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cms-staging
+  name: algo-next
   labels:
-    app: cms-staging
+    app: algo-next
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: cms-staging
+      app: algo-next
   template:
     metadata:
       labels:
-        app: cms-staging
+        app: algo-next
     spec:
       containers:
-        - name: cms-staging
-          image: 100xdevs/cms-staging:88bff9010d854eb2128acdd5fe9700168ba0ac17
+        - name: algo-next
+          image: 100xdevs/algo-next:6a5132e1f1154341607d5e30931ab078e4d44c65
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
           volumeMounts:
             - name: secret
-              mountPath: /usr/src/app/.env
+              mountPath: /usr/src/app/apps/web/.env
               subPath: .env
       imagePullSecrets:
         - name: regcred
       volumes:
         - name: secret
           secret:
-            secretName: cms-staging-secret
+            secretName: algo-arena-secret
             items:
               - key: .env
                 path: .env
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: algo-arena-frontend
+spec:
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: algo-next
