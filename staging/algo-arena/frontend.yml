@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: algo-next
-          image: 100xdevs/algo-next:91268dceba0367b9a7a862a872b580d97afe0666
+          image: 100xdevs/algo-next:f24e1266da4b4ec5e0eafdfaed7c4ff9e640f04a
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
