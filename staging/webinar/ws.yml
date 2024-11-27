@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: webinar-ws
-          image: 100xdevs/webinar-ws:48d39e110167dd0d815e52dc2269eb6415490d31
+          image: 100xdevs/webinar-ws:a06451254982da3f1147088d4b2dfc6d767a3658
           ports:
             - containerPort: 8080
           env:
