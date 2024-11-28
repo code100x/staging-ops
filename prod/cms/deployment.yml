@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: cms
-          image: 100xdevs/cms:35
+          image: 100xdevs/cms:165dc083807f1e5a78b8b88a8c51547f57055fa5
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
