@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: db-backup-job
+spec:
+  schedule: "0 0 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: db-backup
+            image: 100xdevs/db-backup:latest #update the image after pushing it to docker
+            envFrom:
+            - secretRef:
+                name: db-backup-secrets
+          restartPolicy: OnFailure
