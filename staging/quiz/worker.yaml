@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: quiz-worker
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: quiz-worker
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: quiz-worker
-        image: 100xdevs/project-platform-worker:5b2748c7ca0edf5484127f41c89dbc102f1c4e48
+        image: 100xdevs/project-platform-worker:1f2bef0efc52d76702d69f5a340f287fa0825f61
         env:
           - name: REDIS_HOST
             value: "redis://redis.default.svc.cluster.local:6379"
