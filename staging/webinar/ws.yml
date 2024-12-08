@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: webinar-ws
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: webinar-ws
