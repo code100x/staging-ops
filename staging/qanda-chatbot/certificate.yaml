@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ai-api-cert
+  namespace: default
+spec:
+  secretName: ai-api-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: ai.api.100xdevs.com
+  dnsNames:
+  - ai.api.100xdevs.com
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ai-cert
+  namespace: default
+spec:
+  secretName: ai-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: ai.100xdevs.com
+  dnsNames:
+  - ai.100xdevs.com

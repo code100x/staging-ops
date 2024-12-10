@@ -13,50 +13,25 @@ spec:
         app: quiz-backend-server
     spec:
       containers:
-
-      - name: quiz-backend-server
-        image: 100xdevs/project-platform-backend-server:0410f05853bcec9241e50493d3b2757bcf0e4da6
-        ports:
-        - containerPort: 3001
-        env:
-        - name: REDIS_HOST
-          value: "redis://redis.default.svc.cluster.local:6379"
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: backend-secrets
-              key: DATABASE_URL
-        - name: JWT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: backend-secrets
-              key: JWT_SECRET
-        - name: ADMIN_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: backend-secrets
-              key: ADMIN_USERNAME
-        - name: BACKEND_URL
-          valueFrom:
-            secretKeyRef:
-              name: backend-secrets
-              key: BACKEND_URL
-        - name: FRONTEND_URL
-          valueFrom:
-            secretKeyRef:
-              name: backend-secrets
-              key: FRONTEND_URL
-        - name: GOOGLE_CLIENT_ID
-          valueFrom:
-            secretKeyRef:
-              name: backend-secrets
-              key: GOOGLE_CLIENT_ID
-        - name: GOOGLE_CLIENT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: backend-secrets
-              key: GOOGLE_CLIENT_SECRET
-        
+        - name: quiz-backend-server
+          image: 100xdevs/project-platform-backend-server:7ee771edffc129559cb86bf01853a17527446ff3
+          ports:
+            - containerPort: 3001
+          env:
+            - name: REDIS_HOST
+              value: "redis://redis.default.svc.cluster.local:6379"
+          volumeMounts:
+            - name: secret
+              mountPath: /app/.env
+              subPath: .env
+      volumes:
+        - name: secret
+          secret:
+            secretName: backend-secrets
+            items:
+              - key: .env
+                path: .env
+               
 ---
 apiVersion: v1
 kind: Service
@@ -66,6 +41,5 @@ spec:
   ports:
   - port: 80
     targetPort: 3001
-    protocol: TCP
   selector:
     app: quiz-backend-server

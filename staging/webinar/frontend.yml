@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webinar-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webinar-frontend
+  template:
+    metadata:
+      labels:
+        app: webinar-frontend
+    spec:
+      containers:
+        - name: webinar-frontend
+          image: 100xdevs/webinar-frontend:9495bdac0702ef74ca4fefd5c756b708a173de5d
+          ports:
+            - containerPort: 4173
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webinar-frontend
+spec:
+  ports:
+    - port: 80
+      targetPort: 4173
+  selector:
+    app: webinar-frontend

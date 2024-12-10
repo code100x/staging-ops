@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cms-staging
+  name: algo-sweeper
   labels:
-    app: cms-staging
+    app: algo-sweeper
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: cms-staging
+      app: algo-sweeper
   template:
     metadata:
       labels:
-        app: cms-staging
+        app: algo-sweeper
     spec:
       containers:
-        - name: cms-staging
-          image: 100xdevs/cms-staging:ff3bda392836abbb92023c9edf7fc767f6109c95
+        - name: algo-sweeper
+          image: 100xdevs/algo-sweeper:44045aef9292e0440f104a36be186dfb0d62b6f1
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
           volumeMounts:
             - name: secret
-              mountPath: /usr/src/app/.env
+              mountPath: /usr/src/app/apps/sweeper/.env
               subPath: .env
       imagePullSecrets:
         - name: regcred
       volumes:
         - name: secret
           secret:
-            secretName: cms-staging-secret
+            secretName: algo-arena-secret
             items:
               - key: .env
                 path: .env

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webinar-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webinar-server
+  template:
+    metadata:
+      labels:
+        app: webinar-server
+    spec:
+      containers:
+        - name: webinar-server
+          image: 100xdevs/webinar-server:9495bdac0702ef74ca4fefd5c756b708a173de5d
+          ports:
+            - containerPort: 3001
+          volumeMounts:
+            - name: secret
+              mountPath: /usr/src/app/apps/api/.env
+              subPath: .env
+      volumes:
+        - name: secret
+          secret:
+            secretName: webinar-api-secrets
+            items:
+              - key: .env
+                path: .env
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webinar-server
+spec:
+  ports:
+    - port: 80
+      targetPort: 3001
+  selector:
+    app: webinar-server

@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: quiz-backend-server
+spec:
+  destination:
+    name: ''
+    namespace: 'default'
+    server: https://kubernetes.default.svc
+  source:
+    path: staging/quiz
+    repoURL: https://github.com/code100x/staging-ops.git
+    targetRevision: HEAD
+    directory:
+      recurse: false
+      jsonnet:
+        extVars: []
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: quiz-frontend
+spec:
+  destination:
+    name: ''
+    namespace: 'default'
+    server: https://kubernetes.default.svc
+  source:
+    path: staging/quiz
+    repoURL: https://github.com/code100x/staging-ops.git
+    targetRevision: HEAD
+    directory:
+      recurse: false
+      jsonnet:
+        extVars: []
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
