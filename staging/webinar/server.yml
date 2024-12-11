@@ -19,7 +19,7 @@ spec:
             - containerPort: 3001
           volumeMounts:
             - name: secret
-              mountPath: /usr/src/app/apps/api/.env
+              mountPath: /app/apps/api/.env
               subPath: .env
       volumes:
         - name: secret
