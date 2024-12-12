@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: webinar-frontend
-          image: 100xdevs/webinar-frontend:0e63ae49bc84c43b466298d7d602fa1dda13e085
+          image: 100xdevs/webinar-frontend:97fc0610a2aa9825aa9ce583d51444322c520549
           ports:
             - containerPort: 4173
 ---
