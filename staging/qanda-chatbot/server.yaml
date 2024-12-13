@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: qanda-chatbot-server
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: qanda-chatbot-server
