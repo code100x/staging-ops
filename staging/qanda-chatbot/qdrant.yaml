@@ -23,7 +23,7 @@ spec:
       volumes:
       - name: qdrant-storage
         persistentVolumeClaim:
-          claimName: qanda-qdrant-pvc
+          claimName: qanda-qdrant-pvc-100gi
 ---
 apiVersion: v1
 kind: Service
