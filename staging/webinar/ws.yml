@@ -18,7 +18,7 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: REDIS_HOST
+            - name: REDIS_URL
               value: "redis://redis.default.svc.cluster.local:6379"
 ---
 apiVersion: v1
