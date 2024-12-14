@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: webinar-server
-          image: 100xdevs/webinar-server:97fc0610a2aa9825aa9ce583d51444322c520549
+          image: 100xdevs/webinar-server:9c87a39c246da637a1a799e7d14a5d4f440b8c2f
           ports:
             - containerPort: 3001
           volumeMounts:
