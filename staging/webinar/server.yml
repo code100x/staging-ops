@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
         - name: webinar-server
-          image: 100xdevs/webinar-server:9495bdac0702ef74ca4fefd5c756b708a173de5d
+          image: 100xdevs/webinar-server:fb744b6318ee475db8a74eb1446817fd0e863610
           ports:
             - containerPort: 3001
           volumeMounts:
             - name: secret
-              mountPath: /usr/src/app/apps/api/.env
+              mountPath: /app/apps/api/.env
               subPath: .env
       volumes:
         - name: secret
