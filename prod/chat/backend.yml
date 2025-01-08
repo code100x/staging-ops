@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: chat
-        image: 100xdevs/chat:latest
+        image: 100xdevs/chat:0b79dfbd268f3fa81aa74bd4e318dc26756ca47b
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
