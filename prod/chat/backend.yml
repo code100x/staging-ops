@@ -21,7 +21,8 @@ spec:
         env:
         - name: REDIS_URL
           value: "redis://redis.default.svc.cluster.local:6379"
-
+      imagePullSecrets:
+        - name: regcred
 ---
 apiVersion: v1
 kind: Service
