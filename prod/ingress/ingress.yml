@@ -37,6 +37,9 @@ spec:
     - hosts:
       - video-fetcher.100xdevs.com
       secretName: video-fetcher-tls
+    - hosts:
+      - chat.100xdevs.com
+      secretName: chat-api-tls
   rules:
     - host: algo.100xdevs.com
       http:
@@ -136,5 +139,15 @@ spec:
             backend:
               service:
                 name: muzer
+                port:
+                  number: 80a
+    - host: chat.100xdevs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: chat
                 port:
                   number: 80

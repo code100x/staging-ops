@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: chat-pv-100gi
+spec:
+  capacity:
+    storage: 100Gi  
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/data/chat"  
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: chat-pvc-100gi
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi

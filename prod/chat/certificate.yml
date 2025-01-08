@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: chat-api-cert
+  namespace: default
+spec:
+  secretName: chat-api-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: chat.100xdevs.com
+  dnsNames:
+  - chat.100xdevs.com
