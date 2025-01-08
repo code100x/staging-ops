@@ -6,11 +6,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: chat
+      app: chat-api
   template:
     metadata:
       labels:
-        app: chat
+        app: chat-api
     spec:
       containers:
       - name: chat
