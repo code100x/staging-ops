@@ -23,14 +23,13 @@ spec:
                 name: chat-api
                 port:
                   number: 80
-   - host: chat-api.100xdevs.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: chat-api
-                port:
-                  number: 80
-   
+    - host: chat-api.100xdevs.com
+        http:
+          paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: chat-api
+                  port:
+                    number: 80
