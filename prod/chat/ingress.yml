@@ -4,7 +4,6 @@ metadata:
   name: ingress-nginx
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    acme.cert-manager.io/http01-ingress-class: "nginx"
 spec:
   ingressClassName: nginx
   tls:
