@@ -13,7 +13,7 @@ spec:
         app: chat-api
     spec:
       containers:
-      - name: chat
+      - name: chat-app
         image: 100xdevs/chat:7ecc8a2b9dc49ffa654949d0b58e66e225ef9809
         imagePullPolicy: Always
         ports:
