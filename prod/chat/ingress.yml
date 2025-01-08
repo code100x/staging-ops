@@ -9,7 +9,7 @@ spec:
   tls:
     - hosts:
       - chat.100xdevs.com
-      secretName: chat-api-tls
+      secretName: chat-tls
   rules:
     - host: chat.100xdevs.com
       http:
