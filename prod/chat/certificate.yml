@@ -1,10 +1,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: chat-api-cert
+  name: chat-cert
   namespace: default
 spec:
-  secretName: chat-api-tls
+  secretName: chat-tls
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
