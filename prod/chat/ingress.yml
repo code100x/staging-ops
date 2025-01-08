@@ -4,14 +4,27 @@ metadata:
   name: ingress-nginx
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    acme.cert-manager.io/http01-ingress-class: "nginx"
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
       - chat.100xdevs.com
       secretName: chat-tls
+      - chat-api.100xdevs.com
+      secretName: chat-tls-2
   rules:
     - host: chat.100xdevs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: chat-api
+                port:
+                  number: 80
+   - host: chat-api.100xdevs.com
       http:
         paths:
           - path: /

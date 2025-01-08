@@ -11,3 +11,17 @@ spec:
   commonName: chat.100xdevs.com
   dnsNames:
   - chat.100xdevs.com
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: chat-cert-2
+  namespace: default
+spec:
+  secretName: chat-tls-2
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: chat-api.100xdevs.com
+  dnsNames:
+  - chat-api.100xdevs.com
