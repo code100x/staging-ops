@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: chat-app
-        image: 100xdevs/chat:7ecc8a2b9dc49ffa654949d0b58e66e225ef9809
+        image: 100xdevs/chat:edbe4fbb6701326bfb7eda6c5519a4ef57cf72de
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
