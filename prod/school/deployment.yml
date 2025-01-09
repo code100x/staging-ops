@@ -18,7 +18,7 @@ spec:
         image: 100xdevs/school:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
         volumeMounts:
         - name: secret
           mountPath: /app/.env
@@ -42,5 +42,5 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 8080
+    targetPort: 3000
   type: ClusterIP
