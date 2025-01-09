@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: school
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: school
+  template:
+    metadata:
+      labels:
+        app: school
+    spec:
+      containers:
+      - name: school
+        image: 100xdevs/school:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: secret
+          mountPath: /app/.env
+          subPath: .env
+      volumes:
+      - name: secret
+        secret:
+          secretName: school-secrets
+          items:
+          - key: .env
+            path: .env
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: school
+  namespace: default
+spec:
+  selector:
+    app: school
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
