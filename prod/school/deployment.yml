@@ -13,9 +13,11 @@ spec:
       labels:
         app: school
     spec:
+      imagePullSecrets:
+      - name: regcred
       containers:
       - name: school
-        image: 100xdevs/school:d80a29cbf344a883ef608cf231f1a865a3757385
+        image: 100xdevs/school:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
