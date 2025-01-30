@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: trade-cert
+  namespace: default
+spec:
+  secretName: trade-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: trade.100xdevs.com
+  dnsNames:
+  - trade.100xdevs.com
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: trade-backend-cert
+  namespace: default
+spec:
+  secretName: trade-backend-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: trade-backend.100xdevs.com
+  dnsNames:
+  - trade-backend.100xdevs.com

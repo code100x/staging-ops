@@ -40,6 +40,12 @@ spec:
     - hosts:
         - algo-arena.100xdevs.com
       secretName: algo-arena-tls
+    - hosts:
+        - trade.100xdevs.com
+      secretName: trade-tls
+    - hosts:
+        - trade-backend.100xdevs.com
+      secretName: trade-backend-tls
   rules:
     - host: staging.placements.100xdevs.com
       http:
@@ -151,3 +157,25 @@ spec:
                 name: algo-arena-frontend
                 port:
                   number: 80
+    - host: trade.100xdevs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: trade-frontend
+                port:
+                  number: 80
+    - host: trade-backend.100xdevs.com
+      http:
+
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: trade-backend
+                port:
+                  number: 80
+
