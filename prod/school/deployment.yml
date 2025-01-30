@@ -13,8 +13,6 @@ spec:
       labels:
         app: school
     spec:
-      imagePullSecrets:
-      - name: regcred
       containers:
       - name: school
         image: 100xdevs/school:e3fe050adf1e2af04d6a23a04ef58d866b22edb2
