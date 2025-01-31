@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: school
-        image: 100xdevs/school:e3fe050adf1e2af04d6a23a04ef58d866b22edb2
+        image: 100xdevs/school:11cb3a5ab335e0d1a5ecc9b40153de957932ff32
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
