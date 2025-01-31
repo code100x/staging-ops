@@ -46,6 +46,9 @@ spec:
     - hosts:
         - trade-backend.100xdevs.com
       secretName: trade-backend-tls
+    - hosts:
+        - school.100xdevs.com
+      secretName: school-tls
   rules:
     - host: staging.placements.100xdevs.com
       http:
@@ -176,6 +179,16 @@ spec:
             backend:
               service:
                 name: trade-backend
+                port:
+                  number: 80
+    - host: school.100xdevs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: school
                 port:
                   number: 80
 
