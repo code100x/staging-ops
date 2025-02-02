@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: trade-frontend
-        image: 100xdevs/trade-frontend:ec3649dce8ddee60c027b489306c11ded119aa2d
+        image: 100xdevs/trade-frontend:3e4cccad4e53543320ccd8ea661d684b05a024ae
         ports:
         - containerPort: 3000
 ---
