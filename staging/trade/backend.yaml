@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: trade-backend
-          image: 100xdevs/trade-backend:690bb66114f0e597be9b039eed61b861550425d1
+          image: 100xdevs/trade-backend:af27bcb873aa2d89e3f510ceb8323dac1b7e340d
           ports:
             - containerPort: 3001
           volumeMounts:
