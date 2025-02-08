@@ -13,12 +13,15 @@ spec:
       labels:
         app: school
     spec:
+      imagePullSecrets:
+      - name: regcred
       containers:
       - name: school
         image: 100xdevs/school:fd28e6ade39bcaf35ec47d30c390320e1c4e6caf
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
+
         volumeMounts:
         - name: secret
           mountPath: /app/.env
