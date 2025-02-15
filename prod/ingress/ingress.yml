@@ -43,6 +43,12 @@ spec:
     - hosts:
       - school.100xdevs.com
       secretName: school-tls
+    - hosts:
+      - photo.100xdevs.com
+      secretName: photo-tls
+    - hosts:
+      - api.photoaiv2.100xdevs.com
+      secretName: photo-tls
   rules:
     - host: algo.100xdevs.com
       http:
@@ -162,5 +168,25 @@ spec:
             backend:
               service:
                 name: school
+                port:
+                  number: 80
+    - host: photo.100xdevs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: photo-ai-frontend
+                port:
+                  number: 80
+    - host: api.photoaiv2.100xdevs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: photo-ai-backend
                 port:
                   number: 80

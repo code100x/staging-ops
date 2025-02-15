@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: photo-ai-frontend
+  labels:
+    app: photo-ai-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: photo-ai-frontend
+  template:
+    metadata:
+      labels:
+        app: photo-ai-frontend
+    spec:
+      containers:
+        - name: photo-ai-frontend
+          image: 100xdevs/photo-ai-frontend:603c372a0724df961c74cc469099db37577417db
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: secret
+              mountPath: /usr/src/app/apps/web/.env
+              subPath: .env
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: secret
+          secret:
+            secretName: photo-ai-secret
+            items:
+              - key: .env
+                path: .env
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: photo-ai-backend
+  labels:
+    app: photo-ai-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: photo-ai-backend
+  template:
+    metadata:
+      labels:
+        app: photo-ai-backend
+    spec:
+      containers:
+        - name: photo-ai-backend
+          image: 100xdevs/photo-ai-backend:603c372a0724df961c74cc469099db37577417db
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: secret
+              mountPath: /usr/src/app/apps/web/.env
+              subPath: .env
+            - name: secret
+              mountPath: /usr/src/app/packages/db/.env
+              subPath: .env
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: secret
+          secret:
+            secretName: photo-ai-secret
+            items:
+              - key: .env
+                path: .env
