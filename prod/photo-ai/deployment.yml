@@ -59,7 +59,7 @@ spec:
             - containerPort: 3000
           volumeMounts:
             - name: secret
-              mountPath: /usr/src/app/apps/web/.env
+              mountPath: /usr/src/app/apps/backend/.env
               subPath: .env
             - name: secret
               mountPath: /usr/src/app/packages/db/.env
