@@ -45,10 +45,10 @@ spec:
       secretName: school-tls
     - hosts:
       - photo.100xdevs.com
-      secretName: photo-tls
+      secretName: photo-frontend-tls
     - hosts:
       - api.photoaiv2.100xdevs.com
-      secretName: photo-tls
+      secretName: photo-backend-tls
   rules:
     - host: algo.100xdevs.com
       http:

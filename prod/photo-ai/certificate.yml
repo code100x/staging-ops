@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: photo-frontend-cert
+  namespace: default
+spec:
+  secretName: photo-frontend-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: photo.100xdevs.com
+  dnsNames:
+  - photo.100xdevs.com
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: photo-backend-cert
+  namespace: default
+spec:
+  secretName: photo-backend-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: api.photoaiv2.100xdevs.com
+  dnsNames:
+  - api.photoaiv2.100xdevs.com
