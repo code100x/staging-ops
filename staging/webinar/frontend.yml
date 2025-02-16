@@ -12,9 +12,12 @@ spec:
       labels:
         app: webinar-frontend
     spec:
+      imagePullSecrets:
+      - name: regcred
       containers:
         - name: webinar-frontend
           image: 100xdevs/webinar-frontend:c442cc49e6147bfab6386bf72186929cb1513ef7
+          imagePullPolicy: Always
           ports:
             - containerPort: 4173
 ---
