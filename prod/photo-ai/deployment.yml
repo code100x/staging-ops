@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: photo-ai-frontend
-          image: 100xdevs/photo-ai-frontend:e493e3f4a23152bd81404061ce7bafd435c5a776
+          image: 100xdevs/photo-ai-frontend:30d0ee80f22cf7ccd409756508402bd498261620
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
