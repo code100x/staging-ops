@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
         - name: photo-ai-backend
-          image: 100xdevs/photo-ai-backend:12ad2d7f7f97912c39fc6a4eb8cdcb0f0810f8a0
+          image: 100xdevs/photo-ai-backend:14aa3534e2cc242d8382afab2e48d5fdde322d27
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
