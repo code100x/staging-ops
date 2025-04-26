@@ -16,7 +16,7 @@ spec:
       - name: regcred
       containers:
         - name: webinar-ws
-          image: 100xdevs/webinar-ws:268205bceea8d48f49e03d2a11eede2bfb24184c
+          image: 100xdevs/webinar-ws:ef68611d87951be1fc50a2851893de08dab18e0f
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
