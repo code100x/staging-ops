@@ -5,7 +5,7 @@ metadata:
   labels:
     app: cms
 spec:
-  replicas: 10
+  replicas: 0
   selector:
     matchLabels:
       app: cms
