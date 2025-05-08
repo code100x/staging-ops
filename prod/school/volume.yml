@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   capacity:
-    storage: 100Gi  
+    storage: 20Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
@@ -22,4 +22,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 100Gi
+      storage: 20Gi
