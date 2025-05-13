@@ -30,6 +30,7 @@ spec:
           value: cms
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
+          subPath: postgres-data
           name: postgres-storage
       volumes:
       - name: postgres-storage
