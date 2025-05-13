@@ -10,31 +10,16 @@ data:
   POSTGRES_PASSWORD: SecurePassword
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: postgres-volume
-  labels:
-    type: local
-    app: postgres
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: /data/postgresql
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres-volume-claim
+  name: school-postgres-volume-claim
   labels:
     app: postgres
 spec:
-  storageClassName: manual
+  storageClassName: do-block-storage
+  volumeMode: Filesystem
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
@@ -42,16 +27,16 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: school-postgres
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: postgres
+      app: school-postgres
   template:
     metadata:
       labels:
-        app: postgres
+        app: school-postgres
     spec:
       containers:
         - name: postgres
@@ -64,21 +49,22 @@ spec:
                 name: postgres-secret
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
+              subPath: postgres-data
               name: postgresdata
       volumes:
         - name: postgresdata
           persistentVolumeClaim:
-            claimName: postgres-volume-claim
+            claimName: school-postgres-volume-claim
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres
+  name: school-postgres
   labels:
-    app: postgres
+    app: school-postgres
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 5432
   selector:
-    app: postgres
+    app: school-postgres

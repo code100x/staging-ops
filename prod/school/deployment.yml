@@ -21,7 +21,9 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
-
+        env:
+        - name: DATABASE_URL
+          value: "postgres://ps_user:SecurePassword@school-postgres.default.svc.cluster.local:5432/ps_db"
         volumeMounts:
         - name: secret
           mountPath: /app/.env
