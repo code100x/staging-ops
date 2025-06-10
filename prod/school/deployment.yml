@@ -17,7 +17,7 @@ spec:
       - name: regcred
       containers:
       - name: school
-        image: 100xdevs/school:cf09685e11d7f232fccd8c7e13e4cc20c4fffdfd
+        image: 100xdevs/school:5dfaca06d6f3d0f558723b7bd892a5eaa735d12a
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
