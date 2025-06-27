@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quiz-backend-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quiz-backend-server
+  template:
+    metadata:
+      labels:
+        app: quiz-backend-server
+    spec:
+      containers:
+        - name: { { .quizValues.backendimage.name } }
+          image: {{.quizValues.backendimage.repository }}:{{ .quizValues.backendimage.tag }}
+          ports:
+            - containerPort: 3001
+          env:
+            - name: REDIS_HOST
+              value: "{{ .quizValues.backendimage.redishost }}"
+          volumeMounts:
+            - name: secret
+              mountPath: /app/.env
+              subPath: .env
+      volumes:
+        - name: secret
+          secret:
+            secretName: backend-secrets
+            items:
+              - key: .env
+                path: .env
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quiz-backend-server
+spec:
+  ports:
+    - port: 80
+      targetPort: 3001
+  selector:
+    app: quiz-backend-server

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: { { .qandaValues.frontend.name } }
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: { { .qandaValues.frontend.labels.app } }
+  template:
+    metadata:
+      labels:
+        app: { { .qandaValues.frontend.labels.app } }
+    spec:
+      containers:
+        - name: { { .qandaValues.frontend.name } }
+          image: "{{ .qandaValues.frontend.image.repository }}:{{ .qandaValues.frontend.image.tag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: { { .qandaValues.frontend.port.containerPort } }
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: { { .qandaValues.frontend.name } }
+spec:
+  selector:
+    app: { { .qandaValues.frontend.labels.app } }
+  ports:
+    - port: { { .qandaValues.frontend.port.servicePort } }
+      targetPort: { { .qandaValues.frontend.port.containerPort } }

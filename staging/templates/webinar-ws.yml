@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webinar-ws
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webinar-ws
+  template:
+    metadata:
+      labels:
+        app: webinar-ws
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: webinar-ws
+          image: {{.webinarValues.ws.image.repository }}:{{ .webinarValues.ws.image.tag }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: REDIS_URL
+              value: { { .webinarValues.ws.redisHost } }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webinar-ws
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: webinar-ws

@@ -1,0 +1,50 @@
+{{- with .qandaValues.applications.qanda-chatbot-server }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+spec:
+  destination:
+    name: ""
+    namespace: {{ .namespace }}
+    server: {{ .destinationServer }}
+  source:
+    path: {{ .sourcePath }}
+    repoURL: {{ .repoURL }}
+    targetRevision: {{ .targetRevision }}
+    directory:
+      recurse: false
+      jsonnet:
+        extVars: []
+  project: {{ .project }}
+  syncPolicy:
+    automated:
+      prune: {{ .syncPolicy.prune }}
+      selfHeal: {{ .syncPolicy.selfHeal }}
+---
+{{- end }}
+
+{{- with .qandaValues.applications.qanda-frontend }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+spec:
+  destination:
+    name: ""
+    namespace: {{ .namespace }}
+    server: {{ .destinationServer }}
+  source:
+    path: {{ .sourcePath }}
+    repoURL: {{ .repoURL }}
+    targetRevision: {{ .targetRevision }}
+    directory:
+      recurse: false
+      jsonnet:
+        extVars: []
+  project: {{ .project }}
+  syncPolicy:
+    automated:
+      prune: {{ .syncPolicy.prune }}
+      selfHeal: {{ .syncPolicy.selfHeal }}
+{{- end }}

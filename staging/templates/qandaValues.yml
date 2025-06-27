@@ -1,0 +1,74 @@
+storage:
+  size: 100Gi
+  path: /data/qdrant
+  pvName: qanda-qdrant-pv-100gi
+  pvcName: qanda-qdrant-pvc-100gi
+image:
+  repository: 100xdevs/qanda-chatbot-server
+  tag: 0c451940d69016e3d3cae5d4dbb0741655c82fdf
+qanda:
+  name: qanda-chatbot-server
+  labels:
+    app: qanda-chatbot-server
+  port: 3001
+  env:
+    QDRANT_URL: http://qdrant-service.default.svc.cluster.local:6333
+  secret:
+    name: qanda-chatbot-secrets
+    key: .env
+    mountPath: /app/.env
+    subPath: .env
+service:
+  name: job-board-staging
+  port: 80
+  targetPort: 3000
+  type: ClusterIP
+  selector:
+    app: job-board-staging
+
+sealedSecret:
+  enabled: true
+  encryptedData:
+    ".env": AgAfCN1FJgweMon8Pkoaf1JGwbaAcmP6uNPwjc0iHnaDoW4f1IfHpuKBVO2eTnCb7rs5zVw4ucgkH+dMKIh+ahHMzHw0+JNw+ZL5I3IezKkoLX97g/0FD2TolO5HExwXBpgUir901SYDvefVVeA8lpq8VMIBZMNPc76y8jnc9rkOtNc+zdz0I7vtxxDbjufT9OIaerHQ9qAHj4+3qXfsmxLdbr2hqgqYTbHnI9GJvMZrrpPA75JJ4Np01D3zM1xaoUwpQ3uq840l/0kZCLZLAAPg3pVntVj9K30Dde2hov5IudtHAdDTyGbpZqUSrjpoVAgcuXVL0Elor6vUinoWQ2f7eM0GT0NSbbprFgVd7LQAofJIuyAYl4GDh36xmrWI+N8lNNwkmHxGXEqL1pN7uLJJsSjTwryHzMTkvKu8rYHh4/oBpMdDMAF2P5SUjsHyX8Pkbx4jzQntSBMQyxsghF+VHFxAXfgNl1RJCi+C+7L/3pLofqlQh8BgOLYMCBAas50CBi7BfGb0F8QLuRhXQ9Qo7ZDlSocK0jYApoqAR3kGX1Rs1J/tP3ITz4TXjLB4QfA+Zz4204YTgs/pUHuA4ZTuO2Sg6EDSSetq06UOF8yTadBSYnThrobhRBDnFV0wyJ9qXi8RxpgtOyuFjZb4Tck6hBkxU1unkQUPoQcrcyXMLWbJQsAak7UXwmCCKhHo5RpeZp5M5PynD3kGIZIDFZYM8iEYTaHvVQDSbmOq2qcp5MSelPyvZ5ajQWQzis0Csloa3yQnizHMdh+e/BXFVlOc3UGsUPDJeS+k+0O1OTUo3QR8XlgYcEiiOJ+kUTdrzV9K5t93bXnQ4OEqmZco5LT6YvW0NPWiU8+KZi2KsAxTOLUQt0SFGEfUXB9gWY92Ddz+9azq+TFTNNc3qKcXzjoydDUQJoExTBwqAZZ+HgbIVTTKclU9wTuAwnEu3k9/2KzPP/cdc91Nyj0QWlSMdmjq260F0f2ckoBNKZekchMt/C5Qlkpti23QVw51aUsUUJBLjrOlKUg0nBnbc8jxuWHSUgS0AGmC46lBZXws+FjhotHfQmOGArIFFfSrPip2w6cgi9rcwudVvwASzf9P7pSYYBMdg9EZ+iKkSwp/fF6oiLcSW7+tr0xQYTjfSwJCMj8In4Yp1O8d5bizNImmbTymUhJuX+dsWh0dPJEO5HgQaydIsxz+pDgfnxOymemiU7MqG5SoI0kqNMyTs18xb5EkbUp/vj3vy0ojotlzioBhLuF2XZaz0Vys3p0eTmhu0FWMZktKHl8y2K4=
+qdrant:
+  name: qdrant
+  image:
+    repository: qdrant/qdrant
+    tag: latest
+  port: 6333
+  pvc: qanda-qdrant-pvc-100gi
+  storageMountPath: /qdrant/storage
+frontend:
+  name: qanda-frontend
+  labels:
+    app: qanda-frontend
+  image:
+    repository: 100xdevs/qanda-frontend
+    tag: 0c451940d69016e3d3cae5d4dbb0741655c82fdf
+  port:
+    containerPort: 3000
+    servicePort: 80
+applications:
+  qanda-chatbot-server:
+    name: qanda-chatbot-server
+    namespace: default
+    destinationServer: https://kubernetes.default.svc
+    repoURL: https://github.com/code100x/staging-ops.git
+    sourcePath: staging/qanda-chatbot
+    targetRevision: HEAD
+    project: default
+    syncPolicy:
+      prune: true
+      selfHeal: true
+
+  qanda-frontend:
+    name: qanda-frontend
+    namespace: default
+    destinationServer: https://kubernetes.default.svc
+    repoURL: https://github.com/code100x/staging-ops.git
+    sourcePath: staging/qanda-chatbot
+    targetRevision: HEAD
+    project: default
+    syncPolicy:
+      prune: true
+      selfHeal: true

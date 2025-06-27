@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: { { .algoValues.sweeper.name } }
+  labels:
+    app: { { .algoValues.sweeper.labels.app } }
+spec:
+  replicas: { { .algoValues.replicaCount } }
+  selector:
+    matchLabels:
+      app: { { .algoValues.sweeper.labels.app } }
+  template:
+    metadata:
+      labels:
+        app: { { .algoValues.sweeper.labels.app } }
+    spec:
+      containers:
+        - name: { { .algoValues.sweeper.name } }
+          image: "{{ .algoValues.image.repository }}:{{ .algoValues.image.tag }}" #Without quotes can sometime break so use its better to use with quotes
+          imagePullPolicy: { { .algoValues.image.pullPolicy } }
+          ports:
+            - containerPort: { { .algoValues.sweeper.container.port } }
+          volumeMounts:
+            - name: secret
+              mountPath:
+                { { .algoValues.sweeper.container.envFromSecret.mountPath } }
+              subPath:
+                { { .algoValues.sweeper.container.envFromSecret.subPath } }
+      imagePullSecrets:
+        - name: { { (index .algoValues.sweeper.imagePullSecrets 0).name } }
+      volumes:
+        - name: secret
+          secret:
+            secretName:
+              { { .algoValues.sweeper.container.envFromSecret.secretName } }
+            items:
+              - key:
+                  { { .algoValues.sweeper.container.envFromSecret.secretKey } }
+                path:
+                  { { .algoValues.sweeper.container.envFromSecret.subPath } }

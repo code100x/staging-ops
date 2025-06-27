@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: { { .jobValues.v.name } }
+  labels:
+    app: { { .jobValues.v.labels.app } }
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: { { .jobValues.v.labels.app } }
+  template:
+    metadata:
+      labels:
+        app: { { .jobValues.v.labels.app } }
+    spec:
+      containers:
+        - name: { { .jobValues.v.container.name } }
+          image: "{{ .jobValues.image.repository }}:{{ .jobValues.image.tag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: { { .jobValues.v.container.port } }
+          volumeMounts:
+            - name: secret
+              mountPath: { { .jobValues.v.container.envFromSecret.mountPath } }
+              subPath: { { .jobValues.v.container.envFromSecret.subPath } }
+      imagePullSecrets:
+        - name: { { .jobValues.v.imagePullSecrets.0.name } }
+      volumes:
+        - name: secret
+          secret:
+            secretName: { { .jobValues.v.container.envFromSecret.secretName } }
+            items:
+              - key: { { .jobValues.v.container.envFromSecret.secretKey } }
+                path: { { .jobValues.v.container.envFromSecret.subPath } }

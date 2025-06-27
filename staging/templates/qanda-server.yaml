@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: { { .qandaValues.qanda.name } }
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: { { .qandaValues.qanda.labels.app } }
+  template:
+    metadata:
+      labels:
+        app: { { .qandaValues.qanda.labels.app } }
+    spec:
+      containers:
+        - name: qanda-server
+          image: "{{ .qandaValues.image.repository }}:{{ .qandaValues.image.tag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: { { .qandaValues.qanda.port } }
+          env:
+            - name: QDRANT_URL
+              value: "{{ .qandaValues.qanda.env.QDRANT_URL }}"
+          volumeMounts:
+            - name: secret
+              mountPath: { { .qandaValues.qanda.secret.mountPath } }
+              subPath: { { .qandaValues.qanda.secret.subPath } }
+      volumes:
+        - name: secret
+          secret:
+            secretName: { { .qandaValues.qanda.secret.name } }
+            items:
+              - key: { { .qandaValues.qanda.secret.key } }
+                path: { { .qandaValues.qanda.secret.subPath } }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: { { .qandaValues.qanda.name } }
+spec:
+  selector:
+    app: { { .qandaValues.qanda.labels.app } }
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: { { .qandaValues.qanda.port } }

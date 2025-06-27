@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: { { .cmsValues.certificate.name } }
+  namespace: { { .cmsValues.certificate.namespace } }
+spec:
+  secretName: { { .cmsValues.certificate.secretName } }
+  issuerRef:
+    name: { { .cmsValues.certificate.issuerRef.name } }
+    kind: { { .cmsValues.certificate.issuerRef.kind } }
+  commonName: { { .cmsValues.certificate.commonName } }
+  dnsNames:
+    - { { index .cmsValues.certificate.dnsNames 0 } }

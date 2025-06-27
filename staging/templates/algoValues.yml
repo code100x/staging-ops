@@ -1,0 +1,33 @@
+image:
+  repository: 100xdevs/algo-sweeper
+  tag: 44045aef9292e0440f104a36be186dfb0d62b6f1
+  pullPolicy: Always
+
+sweeper:
+  name: algo-sweeper
+  labels:
+    app: algo-sweeper
+  container:
+    port: 3000
+    envFromSecret:
+      secretName: algo-arena-secret
+      secretKey: .env
+      mountPath: /usr/src/app/apps/sweeper/.env
+      subPath: .env
+  imagePullSecrets:
+    - name: regcred
+sealedSecret:
+  enabled: true
+  encryptedData:
+    ".env": AgBCJIq/KbE2euk5rNH6HGXiIXK361y8IPp6opvEJT1mUvqC0+EzQYYS0pDBXE7CMAh3dXW63jPGkMJ6zh/33hjW+3QjLQ7VinCuMA2y4zIqixHgN41XdugcZonmAeoAEXmQJsCkNW24r69UIwj4q0GmwMXz/e5OYUeZlPXoaCJwMaZVG4UDxx0z81EiKO8Mc6IEgiXLPx7zauFsmnh/4/xfSdFVy5RtMaUOv9mHcKyGaBCj1aA2ovOAWJOe8R/PsxOZ5ExGk4bmxDF5FYNFpxs91TPpeNT5kRH9ktwaosWaufEWVoBYf3vl7a0FCbm1d+Fjm0dXrEGTyVH8zHUqrTyQgZrM1mUZ4A3eylCP19FQyfGJFOrGKrEuWvwld2HJr/ULymmZ3E+mia06S+dBI6ZXt9eXOnWVFI/FECRCY895brIIO9aPCfRGm6rCaUpFabCKLxrb8BcXDqZnYpk8DLxoWLoS7eZiSF+bPJMC1sQXamXPVRTBQsmSFq4ku+XphuVTVXW/Rm9g/D7DoZiXAsk6BOeyZKsovvvlzsoJPbKhw3IUBrNsrf9DmkiSuc1qRl25VB1eoltn2p2K/yjCBeIHjMR97m8cj1Dtu67mXqSLfcNBczhexunErA0ySSgBTDi+YkseDmNewnqBjrSaPBE6LGKyrbDUW/Stiy1Iy4F/RAcD7DgC7Pj8k1bIEJt93ZDuueBiR7Dh0+Gf3eLcwtpNxKiFCLqWmIWLy8J+Zt0INMWvJgQDge0cTW300xE7p8cVvFkHvDB14ex5gpViFD515HwYzFFDggZGtIZoWHMiQi4xSCCzCBqs3Nytm4qPVu+QAWE/4cm1n1yRxKCtXict6/IevgzsGtSH9+QevQNLpJG9nINB7E5w8WMzEqruTxP7okO/0asLmWhVXmmh0B/CZPQDJ/3zKkchK3wlOwE0jvqyLPcJ0hKBTKlsSF1dzsWzlde/pUVLZfcsvb0CuB+jruZRK0BkI+lsxVwCtsdDxf9EBYtNVtQ/guE7fS1FwEX1kBWZMGXWEl50xw6oH9BLzOuiz/y2/8g2u/Pl2P1m8ATw3IHz/TwiGb9szY/7coEGl/P2RFNLM/R6CW9yDgCZV2MEsvAchsIa2K2zeS5iPZeehnGPtF64KbNkYsVict5Rygtn3SG1ngcZoeGEP2q2/kTkfVP5Uw6SSVK1UP5j5aFGWt53hI8m8o3/mhB9kn+m8jw/HmD+U9Dg6CoZBssBcPv24GcH3g==
+application:
+  name: algo-arena
+  namespace: default
+  destinationServer: https://kubernetes.default.svc
+  repoURL: https://github.com/code100x/staging-ops.git
+  sourcePath: staging/algo-arena
+  targetRevision: HEAD
+  project: default
+  syncPolicy:
+    prune: true
+    selfHeal: true

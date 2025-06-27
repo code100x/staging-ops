@@ -1,0 +1,50 @@
+image:
+  repository: 100xdevs/cms-staging:27e16492cb85b2f8cbee196aa91842b2b5e62f52
+  imagePullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+
+sealedSecret:
+  enabled: true
+  encryptedData:
+    ".env": AgAv4jlo6QJL1jYKO7eJJ8OKCDuUaRFyxk4C10/D0FJgh1wMo6QwOgJsaIODGUJxwWDsSMFOR3CYo5jI8JMdAIGUh82081IrvK+/DLg+zog/iVPUI/++UX7OOFbdb428g1L6zOCG58Rpmgy9HXl4hVlPEvaAs9EtPS9dmpkh8JpqikK8EQJts8SnQ8V2aIJSqxocmUr5n5yFAyuC2d/uB3aRYBr7exAp2sEMSiiyRBS8zqIctHdqLEglIYwWP8rjRf93xkwnuE0wbIpr96+EFptfv6iBTp5zt1ucVJBWkSG0RePGW1oNP9QenGJ0bym+CGgb1i7wtDnKtnMcCMoTLY/R8/hx0rrCDy9xqpdT1Rs6aQFGXqsR72NENx8FIZJaiFAE7Rx2ehxAC9+UVDaXzo8KCZ+RLVl65qC1m7wp6hvdbJpK3AmAyFTZyARwa/BUaI3rxDpde9OSdH1Uj8qenOPuQJBWo//ylgnrOsjIIcoMst1MAi8HJD2x1iku2XOsBLN1xt8Bu75ZDHoI+ZXz5jMNscNlXzwnQGuqRAE6PrUexv+KNLa4AIzk8EDtRGkFKu3cgKE9QKz99DF7aaO41ge5UHN/ahsiHDl/zgx7l26uzJ2nQkM8+xbCuiw6PRCuen3Ipg8RWIhNvSOMcTJML1lPUF5Fn2XNBvnYhNL8qs73izIbbluDysOElOulu9IPAOCjj5doS4rDQxF4PLJnm1T
+
+v:
+  name: cms-staging
+  labels:
+    app: cms-staging
+  container:
+    name: cms-staging
+    port: 3000
+    envFromSecret:
+      secretName: cms-staging-secret
+      secretKey: .env #this will point to the ."env" in sealedsecret(surely)
+      mountPath: /usr/src/app/.env
+      subPath: .env
+  imagePullSecrets:
+    - name: regcred
+certificate:
+  enabled: true
+  name: cms-staging-cert
+  secretName: cms-staging-tls
+  namespace: default
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: staging.app.100xdevs.com
+  dnsNames:
+    - staging.app.100xdevs.com
+
+application:
+  name: cms-staging
+  namespace: default
+  destinationServer: https://kubernetes.default.svc
+  sourcePath: staging/cms
+  repoURL: https://github.com/code100x/staging-ops.git
+  targetRevision: HEAD
+  project: default
+  syncPolicy:
+    prune: true
+    selfHeal: true

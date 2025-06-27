@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: { { .qandaValues.storage.pvName } }
+spec:
+  capacity:
+    storage: { { .qandaValues.storage.size } }
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "{{ .qandaValues.storage.path }}"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: { { .qandaValues.storage.pvcName } }
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: { { .qandaValues.storage.size } }

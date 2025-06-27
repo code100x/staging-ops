@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: algo-arena-cert
+  namespace: default
+spec:
+  secretName: algo-arena-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: algo-arena.100xdevs.com
+  dnsNames:
+    - algo-arena.100xdevs.com
