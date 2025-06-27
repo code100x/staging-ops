@@ -16,7 +16,7 @@ spec:
         - name: regcred
       containers:
         - name: webinar-ws
-          image: {{.webinarValues.ws.image.repository }}:{{ .webinarValues.ws.image.tag }}
+          image: 100xdevs/webinar-ws:32bc03c63b3d2b547db1fc07c08b12601e0aa34d
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

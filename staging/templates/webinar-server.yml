@@ -13,10 +13,10 @@ spec:
         app: webinar-server
     spec:
       imagePullSecrets:
-      - name: regcred
+        - name: regcred
       containers:
         - name: webinar-server
-          image: {{ .webinarValues.backendimage.repository }}:{{ .webinarValues.backendimage.tag }}
+          image: 100xdevs/webinar-server:32bc03c63b3d2b547db1fc07c08b12601e0aa34d
           imagePullPolicy: Always
           ports:
             - containerPort: 3001
