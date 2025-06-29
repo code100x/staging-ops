@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: { { .jobValues.service.name } }
+spec:
+  selector:
+    app: { { .jobValues.service.selector.app } }
+  ports:
+    - protocol: TCP
+      port: { { .jobValues.service.port } }
+      targetPort: { { .jobValues.service.targetPort } }
+  type: { { .jobValues.service.type } }

@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: { { .cmsValues.application.name } }
+spec:
+  destination:
+    name: ""
+    namespace: { { .cmsValues.application.namespace } }
+    server: { { .cmsValues.application.destinationServer } }
+  source:
+    path: { { .cmsValues.application.sourcePath } }
+    repoURL: { { .cmsValues.application.repoURL } }
+    targetRevision: { { .cmsValues.application.targetRevision } }
+    directory:
+      recurse: false
+      jsonnet:
+        extVars: []
+  project: { { .cmsValues.application.project } }
+  syncPolicy:
+    automated:
+      prune: { { .cmsValues.application.syncPolicy.prune } }
+      selfHeal: { { .cmsValues.application.syncPolicy.selfHeal } }

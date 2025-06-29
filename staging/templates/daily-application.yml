@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: { { .dailyValues.application.name } }
+spec:
+  destination:
+    name: ""
+    namespace: { { .dailyValues.application.namespace } }
+    server: { { .dailyValues.application.destinationServer } }
+  source:
+    path: { { .dailyValues.application.sourcePath } }
+    repoURL: { { .dailyValues.application.repoURL } }
+    targetRevision: { { .dailyValues.application.targetRevision } }
+    directory:
+      recurse: false
+      jsonnet:
+        extVars: []
+  project: { { .dailyValues.application.project } }
+  syncPolicy:
+    automated:
+      prune: { { .dailyValues.application.syncPolicy.prune } }
+      selfHeal: { { .dailyValues.application.syncPolicy.selfHeal } }

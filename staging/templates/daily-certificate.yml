@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: dailycode-staging-cert
+  namespace: default
+spec:
+  secretName: dailycode-staging-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: staging.projects.100xdevs.com
+  dnsNames:
+    - staging.projects.100xdevs.com

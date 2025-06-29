@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: { { .cmsValues.v.name } }
+  labels:
+    app: { { .cmsValues.v.labels.app } }
+spec:
+  replicas: { { .cmsValues.replicaCount } }
+  selector:
+    matchLabels:
+      app: { { .cmsValues.v.labels.app } }
+  template:
+    metadata:
+      labels:
+        app: { { .cmsValues.v.labels.app } }
+    spec:
+      containers:
+        - name: { { .cmsValues.v.container.name } }
+          image: {{ .cmsValues.image.repository }}:{ { .cmsValues.image.tag } } #for the image  deployment
+          imagePullPolicy: { { .cmsValues.image.pullPolicy } }
+          ports:
+            - containerPort: { { .cmsValues.v.container.port } }
+          volumeMounts:
+            - name: secret
+              mountPath: { { .cmsValues.v.container.envFromSecret.mountPath } }
+              subPath: { { .cmsValues.v.container.envFromSecret.subPath } }
+      imagePullSecrets:
+        - name: { { (index .cmsValues.v.imagePullSecrets 0).name } }
+      volumes:
+        - name: secret
+          secret:
+            secretName: { { .cmsValues.v.container.envFromSecret.secretName } }
+            items:
+              - key: { { .cmsValues.v.container.envFromSecret.secretKey } }
+                path: { { .cmsValues.v.container.envFromSecret.subPath } }

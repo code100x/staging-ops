@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: { { .dailyValues.v.name } }
+  labels:
+    app: { { .dailyValues.v.labels.app } }
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: { { .dailyValues.v.labels.app } }
+  template:
+    metadata:
+      labels:
+        app: { { .dailyValues.v.labels.app } }
+    spec:
+      containers:
+        - name: { { .dailyValues.v.container.name } }
+          image: "{{ .dailyValues.image.repository }}:{{ .dailyValues.image.tag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: { { .dailyValues.v.container.port } }
+          volumeMounts:
+            - name: secret
+              mountPath:
+                { { .dailyValues.v.container.envFromSecret.mountPath } }
+              subPath: { { .dailyValues.v.container.envFromSecret.subPath } }
+      imagePullSecrets:
+        - name: { { .dailyValues.v.imagePullSecrets.0.name } }
+      volumes:
+        - name: secret
+          secret:
+            secretName:
+              { { .dailyValues.v.container.envFromSecret.secretName } }
+            items:
+              - key: { { .dailyValues.v.container.envFromSecret.secretKey } }
+                path: { { .dailyValues.v.container.envFromSecret.subPath } }

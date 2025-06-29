@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: algo-next
+  labels:
+    app: algo-next
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: algo-next
+  template:
+    metadata:
+      labels:
+        app: algo-next
+    spec:
+      containers:
+        - name: algo-next
+          image: {{ .algoValues.image.repository }}:{ { .algoValues.image.tag } } 
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: secret
+              mountPath: /usr/src/app/apps/web/.env
+              subPath: .env
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: secret
+          secret:
+            secretName: algo-arena-secret
+            items:
+              - key: .env
+                path: .env
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: algo-arena-frontend
+spec:
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: algo-next

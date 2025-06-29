@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: { { .jobValues.application.name } }
+spec:
+  destination:
+    name: ""
+    namespace: { { .jobValues.application.namespace } }
+    server: { { .jobValues.application.destinationServer } }
+  source:
+    path: { { .jobValues.application.sourcePath } }
+    repoURL: { { .jobValues.application.repoURL } }
+    targetRevision: { { .jobValues.application.targetRevision } }
+    directory:
+      recurse: false
+      jsonnet:
+        extVars: []
+  project: { { .jobValues.application.project } }
+  syncPolicy:
+    automated:
+      prune: { { .jobValues.application.syncPolicy.prune } }
+      selfHeal: { { .jobValues.application.syncPolicy.selfHeal } }

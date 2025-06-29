@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: { { .qandaValues.qdrant.name } }
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: { { .qandaValues.qdrant.name } }
+  template:
+    metadata:
+      labels:
+        app: { { .qandaValues.qdrant.name } }
+    spec:
+      containers:
+        - name: { { .qandaValues.qdrant.name } }
+          image: "{{ .qandaValues.qdrant.image.repository }}:{{ .qandaValues.qdrant.image.tag }}"
+          ports:
+            - containerPort: { { .qandaValues.qdrant.port } }
+          volumeMounts:
+            - mountPath: "{{ .qandaValues.qdrant.storageMountPath }}"
+              name: qdrant-storage
+      volumes:
+        - name: qdrant-storage
+          persistentVolumeClaim:
+            claimName: { { .qandaValues.qdrant.pvc } }
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: qdrant-service
+spec:
+  selector:
+    app: qdrant
+  ports:
+    - protocol: TCP
+      port: 6333
+      targetPort: 6333

@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: { { .algoValues.application.name } }
+spec:
+  destination:
+    name: ""
+    namespace: { { .algoValues.application.namespace } }
+    server: { { .algoValues.application.destinationServer } }
+  source:
+    path: { { .algoValues.application.sourcePath } }
+    repoURL: { { .algoValues.application.repoURL } }
+    targetRevision: { { .algoValues.application.targetRevision } }
+    directory:
+      recurse: false
+      jsonnet:
+        extVars: []
+  sources: []
+  project: { { .algoValues.application.project } }
+  syncPolicy:
+    automated:
+      prune: { { .algoValues.application.syncPolicy.prune } }
+      selfHeal: { { .algoValues.application.syncPolicy.selfHeal } }
