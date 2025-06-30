@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: quiz-worker
-        image: 100xdevs/project-platform-worker:df13b25409fddfc7a603de114116dad446791211
+        image: dipenbhat557/project-platform-worker:latest
+        imagePullPolicy: Always
         env:
           - name: REDIS_HOST
             value: "redis://redis.default.svc.cluster.local:6379"
@@ -22,6 +23,8 @@ spec:
           - name: secret
             mountPath: /app/.env
             subPath: .env
+      imagePullSecrets:
+        - name: quiz-regcred
       volumes:
         - name: secret
           secret:
