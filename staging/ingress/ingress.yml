@@ -17,10 +17,10 @@ spec:
         - staging.app.100xdevs.com
       secretName: cms-staging-tls
     - hosts:
-        - quiz.100xdevs.com
+        - quiz.superdev.fun
       secretName: quiz-tls
     - hosts:
-        - quiz-backend.100xdevs.com
+        - quiz-backend.superdev.fun
       secretName: quiz-backend-tls
     - hosts:
         - ai.api.100xdevs.com
@@ -86,7 +86,7 @@ spec:
                 name: cms-staging
                 port:
                   number: 80
-    - host: quiz.100xdevs.com
+    - host: quiz.superdev.fun
       http:
         paths:
           - path: /
@@ -96,7 +96,7 @@ spec:
                 name: quiz-frontend
                 port:
                   number: 80
-    - host: quiz-backend.100xdevs.com
+    - host: quiz-backend.superdev.fun
       http:
         paths:
           - path: /

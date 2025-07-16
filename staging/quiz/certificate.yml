@@ -8,9 +8,9 @@ spec:
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: quiz.100xdevs.com
+  commonName: quiz.superdev.fun
   dnsNames:
-  - quiz.100xdevs.com
+  - quiz.superdev.fun
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -22,6 +22,6 @@ spec:
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: quiz-backend.100xdevs.com
+  commonName: quiz-backend.superdev.fun
   dnsNames:
-  - quiz-backend.100xdevs.com
+  - quiz-backend.superdev.fun

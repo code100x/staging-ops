@@ -14,9 +14,13 @@ spec:
     spec:
       containers:
       - name: quiz-frontend
-        image: 100xdevs/project-platform-frontend:8252f99d898a96a294eff33d94c490ef1deb499c
+        image: dipenbhat557/project-platform-frontend:b0c09b364cb5918a90fef7ee4e6e4de1a081b48c
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
+      imagePullSecrets:
+        - name: quiz-regcred
+
 ---
 apiVersion: v1
 kind: Service

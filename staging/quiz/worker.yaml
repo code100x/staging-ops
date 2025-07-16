@@ -14,19 +14,17 @@ spec:
     spec:
       containers:
       - name: quiz-worker
-        image: 100xdevs/project-platform-worker:8252f99d898a96a294eff33d94c490ef1deb499c
+        image: dipenbhat557/project-platform-worker:b0c09b364cb5918a90fef7ee4e6e4de1a081b48c
+        imagePullPolicy: Always
         env:
           - name: REDIS_HOST
             value: "redis://redis.default.svc.cluster.local:6379"
-          - name: DATABASE_URL
-            valueFrom:
-              secretKeyRef:
-                name: database-secret
-                key: DATABASE_URL
         volumeMounts:
           - name: secret
             mountPath: /app/.env
             subPath: .env
+      imagePullSecrets:
+        - name: quiz-regcred
       volumes:
         - name: secret
           secret:
