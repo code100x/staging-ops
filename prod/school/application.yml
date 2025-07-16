@@ -15,7 +15,6 @@ spec:
       recurse: false
       jsonnet:
         extVars: []
-  sources: []
   project: default
   syncPolicy:
     automated:
