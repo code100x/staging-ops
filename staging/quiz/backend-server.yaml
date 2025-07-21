@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: quiz-backend-server
-          image: dipenbhat557/project-platform-server:e1dbab0328fd91bf19661e9b7675b0ca54fcef52
+          image: dipenbhat557/project-platform-server:1a52584a1a0d040fa6f36ce01c074557776e756f
           imagePullPolicy: Always
           ports:
             - containerPort: 3001
