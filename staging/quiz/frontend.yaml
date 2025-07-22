@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: quiz-frontend
-        image: dipenbhat557/project-platform-frontend:0ed85df2838fc2138e2dda2223971b9ca06576eb
+        image: dipenbhat557/project-platform-frontend:8e8634a0371421c352d0c3cef148cc05c448a279
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
