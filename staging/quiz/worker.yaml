@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: quiz-worker
-        image: dipenbhat557/project-platform-worker:3751705db819714bf5e80e7820b671115bf926c5
+        image: dipenbhat557/project-platform-worker:9681a40e62ff13b25e2daedc666b1e4950c998ea
         imagePullPolicy: Always
         env:
           - name: REDIS_HOST
