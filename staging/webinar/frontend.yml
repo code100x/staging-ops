@@ -16,7 +16,7 @@ spec:
       - name: regcred
       containers:
         - name: webinar-frontend
-          image: 100xdevs/webinar-frontend:fabe525ab7219defeccc4f77073b070351078fd0
+          image: 100xdevs/webinar-frontend:fe6d9d8d2b8effac5d819f57a8b24266e2f7f77e
           imagePullPolicy: Always
           ports:
             - containerPort: 4173
