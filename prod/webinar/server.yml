@@ -16,7 +16,7 @@ spec:
       - name: regcred
       containers:
         - name: webinar-server
-          image: 100xdevs/webinar-server:e882857cf806110e8444e6191cb58b125e0f0cb9
+          image: 100xdevs/webinar-server:66be183d81f07b3aba9f20872aa69ea20f1c9e10
           imagePullPolicy: Always
           ports:
             - containerPort: 3001
