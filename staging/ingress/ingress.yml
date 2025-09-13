@@ -38,6 +38,15 @@ spec:
         - webinar-ws-api.webinar.gg
       secretName: webinar-ws-tls
     - hosts:
+        - staging.webinar.gg
+      secretName: webinar-staging-tls
+    - hosts:
+        - staging.webinar-api.webinar.gg
+      secretName: webinar-staging-server-tls
+    - hosts:
+        - webinar-ws-api.webinar.gg
+      secretName: webinar-ws-tls
+    - hosts:
         - algo-arena.100xdevs.com
       secretName: algo-arena-tls
     - hosts:
@@ -154,6 +163,36 @@ spec:
             backend:
               service:
                 name: webinar-ws
+                port:
+                  number: 80
+    - host: staging.webinar.gg
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webinar-staging-frontend
+                port:
+                  number: 80
+    - host: staging.webinar-api.webinar.gg
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webinar-staging-server
+                port:
+                  number: 80
+    - host: staging.webinar-ws-api.webinar.gg
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webinar-staging-ws
                 port:
                   number: 80
     - host: algo-arena.100xdevs.com
