@@ -8,7 +8,7 @@ spec:
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: webinar.gg
+  commonName: staging.webinar.gg
   dnsNames:
     - staging.webinar.gg
 ---
@@ -22,7 +22,7 @@ spec:
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: webinar-staging-api.webinar.gg
+  commonName: staging.webinar-api.webinar.gg
   dnsNames:
     - staging.webinar-api.webinar.gg
 ---
@@ -36,6 +36,6 @@ spec:
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: webinar-staging-ws-api.webinar.gg
+  commonName: staging.webinar-ws-api.webinar.gg
   dnsNames:
     - staging.webinar-ws-api.webinar.gg
