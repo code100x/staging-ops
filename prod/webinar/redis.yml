@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webinar-staging-redis
+  name: redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webinar-staging-redis
+      app: redis
   template:
     metadata:
       labels:
-        app: webinar-staging-redis
+        app: redis
     spec:
       containers:
-        - name: webinar-staging-redis
+        - name: redis
           image: redis:alpine
           ports:
             - containerPort: 6379
@@ -21,9 +21,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: webinar-staging-redis
+  name: redis
 spec:
   ports:
     - port: 6379
   selector:
-    app: webinar-staging-redis
+    app: redis

@@ -1,0 +1,4 @@
+.env
+secrets.yml
+.env.txt
+kubeseal-cert.pem

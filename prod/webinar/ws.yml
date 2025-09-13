@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webinar-staging-ws
+  name: webinar-ws
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webinar-staging-ws
+      app: webinar-ws
   template:
     metadata:
       labels:
-        app: webinar-staging-ws
+        app: webinar-ws
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-        - name: webinar-staging-ws
-          image: 100xdevs/webinar-ws-staging:21392fe02ef8709f5d5679c6dbd9d78749564644
+        - name: webinar-ws
+          image: 100xdevs/webinar-ws:21392fe02ef8709f5d5679c6dbd9d78749564644
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -27,10 +27,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: webinar-staging-ws
+  name: webinar-ws
 spec:
   ports:
     - port: 80
       targetPort: 8080
   selector:
-    app: webinar-staging-ws
+    app: webinar-ws
